@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22099321D 22099459D_EventManagePage</title>  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <div class="navbar-brand">
+                    <img src="assets/icon.png" alt="Logo" style="max-height: 100px; width: 300px;">
+                </div>
+                <div class="navbar-nav ms-3" style="font-weight: bold; font-size: 1.25rem;">
+                    <a class="nav-link link-primary fw-bold px-4 text-center" href="EventManagePage.html">Parkinglot Management</a>
+                    <a class="nav-link px-4 text-center" href="BookingRecords.html">All Booking Records</a>
+                    <a class="nav-link px-4 text-center" href="UserInformation.html">All User Information</a>
+                </div>
+            </div>
+            <div class="me-3">
+                <button class="btn btn-outline-dark" style="background-color:white; color: #001f54; font-weight: bold;">Log out</button>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="container my-5">
+            <div class="filter-container container-fluid bg-white p-4 rounded border mb-4">
+                <div class="row g-3 align-items-center">
+        
+                    <div class="col-lg-3 col-md-6">
+                        <div class="form-group" lang="en">
+                            <input type="date" id="dateSelect" class="form-control" style="border: 1px solid black;">
+                        </div>
+                    </div>
+             
+                    <div class="col-lg-3 col-md-6">
+                        <select id="eventSelect" class="form-select" style="border: 1px solid black;">
+                            <option value="">Select Parkinglot</option>
+                            <option value="A">Surface Parking Lot</option>
+                            <option value="B">Underground Parking Lot</option>
+                            <option value="C">Carport</option>
+                        </select>
+                    </div>
+             
+                    <div class="col-lg-6 col-md-12">
+                        <div class="d-flex gap-3 align-items-center">
+                            <input type="text" placeholder="Search..." class="form-control" style="border: 1px solid black;">
+                            
+                            <div class="d-flex gap-3">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="searchTitle" name="searchTitle">
+                                    <label class="form-check-label" for="searchTitle">Title</label>
+                                </div>
+                                
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="searchDescription" name="searchDescription">
+                                    <label class="form-check-label" for="searchDescription">Description</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        
+             <button class="btn btn-primary rounded-pill mb-4" style="background-color: #164596; border-color:  #164596;">
+                <i class="bi bi-plus-lg me-2">Add New Parking Space</i>
+            </button>
+        
+            <div class="card mb-4 shadow-sm" style="border: 2px solid #02132f; font-weight: bold;">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="d-flex align-items-center gap-3">
+                                <div style="width: 150px; height: 200px;" class="border rounded overflow-hidden position-relative">
+                                    <img id="preview1" src="/api/placeholder/150/200" alt="Parkinglot cover image" class="w-100 h-100 object-fit-cover">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <label class="form-label fw-bold">Parkinglot Image:</label>
+                                    <input type="file" class="form-control" accept="image/*" onchange="handleImageUpload(this, 'preview1')">
+                                    <small class="text-muted d-block mt-1">Recommended size: 150x200px</small>
+                                    <small class="text-muted d-block">Supported formats: JPG, PNG, WebP</small>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Parkinglot Title:</label>
+                            <input type="text" class="form-control" value="Surface Parking Lot" style="border: 2px solid #164596;">
+                        </div>
+        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Venue:</label>
+                            <input type="text" class="form-control" value="P1" style="border: 2px solid#164596;">
+                        </div>
+        
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Parkinglot Description:</label>
+                            <textarea class="form-control" rows="3" placeholder="Enter parkinglot description..." style="border: 2px solid #164596;">Disneyland surface parking lot is an expansive outdoor area designated for guest vehicles, providing convenient parking spaces for visitors to the theme park.</textarea>
+                        </div>
+        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Date:</label>
+                            <input type="date" class="form-control" value="2024-10-31" style="border: 2px solid #164596;">
+                        </div>
+                    </div>
+        
+                    <div class="d-flex justify-content-end gap-2 mt-4">
+                        <button class="btn" style="background-color: rgb(29, 132, 4); color: rgb(255, 255, 255);">
+                            Modify
+                        </button>
+                        <button class="btn" style="background-color: rgb(35, 2, 134); color: white;">
+                            Manage Parking Spaces
+                        </button>
+                        <button class="btn" style="background-color: rgb(86, 61, 105); color: white;">
+                            Save Change
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="card mb-4 shadow-sm" style="border: 2px solid #02132f; font-weight: bold;">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="d-flex align-items-center gap-3">
+                                <div style="width: 150px; height: 200px;" class="border rounded overflow-hidden position-relative">
+                                    <img id="preview1" src="/api/placeholder/150/200" alt="Parkinglot cover image" class="w-100 h-100 object-fit-cover">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <label class="form-label fw-bold">Parkinglot Image:</label>
+                                    <input type="file" class="form-control" accept="image/*" onchange="handleImageUpload(this, 'preview1')">
+                                    <small class="text-muted d-block mt-1">Recommended size: 150x200px</small>
+                                    <small class="text-muted d-block">Supported formats: JPG, PNG, WebP</small>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Parkinglot Title:</label>
+                            <input type="text" class="form-control" value="" style="border: 2px solid #164596;">
+                        </div>
+        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Venue:</label>
+                            <input type="text" class="form-control" value="Please select the venue" style="border: 2px solid#164596;">
+                        </div>
+        
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Parkinglot Description:</label>
+                            <textarea class="form-control" rows="3" placeholder="Enter parkinglot description..." style="border: 2px solid #164596;"></textarea>
+                        </div>
+        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Date:</label>
+                            <input type="date" class="form-control" value="2024-10-31" style="border: 2px solid #164596;">
+                        </div>
+                    </div>
+        
+                    <div class="d-flex justify-content-end gap-2 mt-4">
+                        <button class="btn" style="background-color: rgb(29, 132, 4); color: rgb(255, 255, 255);">
+                            Modify
+                        </button>
+                        <button class="btn" style="background-color: rgb(35, 2, 134); color: white;">
+                            Manage Parking Spaces
+                        </button>
+                        <button class="btn" style="background-color: rgb(86, 61, 105); color: white;">
+                            Save Change
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+    <script>
+        function resizeImage(file) {
+            return new Promise((resolve, reject) => {
+           
+                const img = new Image();
+                img.src = URL.createObjectURL(file);
+                
+                img.onload = () => {
+             
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+              
+                    const targetWidth = 150;
+                    const targetHeight = 200;
+                    
+            
+                    let scale = Math.min(targetWidth / img.width, targetHeight / img.height);
+                    
+                    canvas.width = targetWidth;
+                    canvas.height = targetHeight;
+                    
+            
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.fillRect(0, 0, targetWidth, targetHeight);
+                    
+            
+                    const scaledWidth = img.width * scale;
+                    const scaledHeight = img.height * scale;
+                    const offsetX = (targetWidth - scaledWidth) / 2;
+                    const offsetY = (targetHeight - scaledHeight) / 2;
+                    
+               
+                    ctx.drawImage(img, offsetX, offsetY, scaledWidth, scaledHeight);
+                    
+                  
+                    canvas.toBlob((blob) => {
+                        resolve(blob);
+                    }, 'image/jpeg', 0.9); 
+           
+                    URL.revokeObjectURL(img.src);
+                };
+                
+                img.onerror = () => {
+                    reject(new Error('Failed to load image'));
+                    URL.revokeObjectURL(img.src);
+                };
+            });
+        }
+        
+        async function handleImageUpload(input, previewId, loadingId) {
+            const preview = document.getElementById(previewId);
+            const loading = document.getElementById(loadingId);
+            
+            if (input.files && input.files[0]) {
+                try {
+               
+                    loading.style.display = 'flex';
+                    
+            
+                    const file = input.files[0];
+                    
+                 
+                    const maxSize = 5 * 1024 * 1024; 
+                    if (file.size > maxSize) {
+                        throw new Error('Image size should not exceed 5MB');
+                    }
+                    
+ 
+                    const resizedBlob = await resizeImage(file);
+                    
+             
+                    const previewUrl = URL.createObjectURL(resizedBlob);
+                    
+             
+                    preview.onload = () => {
+                        loading.style.display = 'none';
+                        URL.revokeObjectURL(preview.src); 
+                    };
+                    preview.src = previewUrl;
+                    
+                } catch (error) {
+                    loading.style.display = 'none';
+                    alert(error.message || 'Error processing image. Please try again.');
+                }
+            }
+        }
+        
+
+        function setupDragAndDrop() {
+            const dropZones = document.querySelectorAll('.border.rounded.overflow-hidden');
+            
+            dropZones.forEach((zone, index) => {
+                zone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    zone.style.borderColor = '#0d6efd';
+                    zone.style.backgroundColor = 'rgba(13, 110, 253, 0.1)';
+                });
+                
+                zone.addEventListener('dragleave', (e) => {
+                    e.preventDefault();
+                    zone.style.borderColor = '';
+                    zone.style.backgroundColor = '';
+                });
+                
+                zone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    zone.style.borderColor = '';
+                    zone.style.backgroundColor = '';
+                    
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        const input = document.getElementById(`imageUpload${index + 1}`);
+                        input.files = files;
+                        input.dispatchEvent(new Event('change'));
+                    }
+                });
+            });
+        } 
+        document.addEventListener('DOMContentLoaded', setupDragAndDrop);
+        </script>
+    <footer class="py-3 fixed-bottom text-center" style="background: linear-gradient(135deg, #001334 0%, #001f54 100%) !important; color: white !important;">
+        Notification: This is EIE4432 Project of ©WU Bokun 22099459D & ZHANG Xinshen 22099321D
+    </footer>
+</body>
+</html> 
