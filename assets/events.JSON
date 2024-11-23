@@ -1,0 +1,20 @@
+{
+    "events": [
+        {
+            "title": "Surface Parking Lot Event",
+            "date": "2024-11-15",
+            "description": "The parking lot is located at the East Entrance of Disneyland.",
+            "venue": "P1",
+            "tickets": 50,
+            "coverImage": "assets/surface_parking_lot.jpg"
+        },
+        {
+            "title": "Underground Parking Lot Event",
+            "date": "2024-11-22",
+            "description": "The parking lot is located at the West Entrance of Disneyland.",
+            "venue": "P2",
+            "tickets": 30,
+            "coverImage": "assets/underground_parking_lot.jpg"
+        }
+    ]
+}
