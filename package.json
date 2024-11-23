@@ -1,11 +1,28 @@
 {
+  "name": "group_eie4432_lab",
+  "version": "1.0",
+  "type": "module",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.html",
+    "start": "node server/server.js",
     "dev": "nodemon --watch \"src/**\" --ext \"ts,js,json,mjs\" --exec \"npm start\"",
     "format": "prettier --write .",
     "lint": "eslint . --color --cache -f friendly --max-warnings 10"
   },
+  "devDependencies": {
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-formatter-friendly": "^7.0.0",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.0.0"
+  },
   "dependencies": {
-    "nodemon": "^3.1.7"
+    "bcrypt": "^5.1.1",
+    "connect-mongo": "^5.1.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "mongodb": "^6.11.0",
+    "multer": "^1.4.5-lts.1"
   }
 }
