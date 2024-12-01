@@ -1,155 +1,141 @@
-<!DOCTYPE html>
-<html>
-  <!--22099321DD ZHANG Xinshen   22099459D WU Bokun   EIE4432 Project-->
+<!doctype html>
+<html lang="en">
   <head>
-    <title>22099321D 22099459D_event_dashboard</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <script src="scripts/jquery-3.7.1.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
     <style>
-      .switch {
-        width: auto;
-      }
-      @media (max-width: 991.98px) {
-        .switch {
-          width: 100%;
-        }
-      }
       .nav-link,
       .header-link {
         color: #001334 !important;
         font-weight: bold !important;
       }
+
       footer {
-        background: linear-gradient(
-          135deg,
-          #001334 0%,
-          #001f54 100%
-        ) !important;
+        background: linear-gradient(135deg, #001334 0%, #001f54 100%) !important;
         color: white !important;
       }
+
       .card {
-        margin-bottom: 30px; 
+        margin-bottom: 30px;
+      }
+
+      .card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .autocomplete-suggestions {
+        border: 1px solid #ccc;
+        max-height: 150px;
+        overflow-y: auto;
+        z-index: 1000;
+        position: absolute;
+        background: white;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .autocomplete-suggestion {
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .autocomplete-suggestion:hover {
+        background: #f0f0f0;
+      }
+
+      main {
+        padding-bottom: 60px; /* 根据页脚高度调整 */
       }
     </style>
   </head>
   <body>
-    <header class="d-none d-lg-flex justify-content-between align-items-center bg-light" style="height: 2rem">
-      <div class="px-5">
-        <a href="aboutus.html" class="mx-3 text-decoration-none header-link">About us</a>
-      </div>
-    </header>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid" style="height: 4rem">
-        <div class="row h-100 switch">
-          <div class="col-4 d-lg-none d-flex align-items-center">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </div>
-          <div class="col-4 col-lg d-flex justify-content-center h-100">
-            <img class="h-100 w-auto mx-auto px-lg-5" src="assets/icon.png" style="transform: scale(1.2)" />
-          </div>
-          <div class="col-4 d-lg-none d-flex align-items-center justify-content-end">
-            <a href="#" class="text-decoration-none header-link">Log in / Sign up</a>
-          </div>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item pe-lg-3"><a class="nav-link active" aria-current="page" href="./index.html">Home</a></li>
-            <li class="nav-item pe-lg-3"><a class="nav-link" href="event_dashboard.html">View</a></li>
-
+      <div class="container-fluid h-100">
+        <!-- Logo and Toggler -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img
+            src="assets/icon.png"
+            alt="Logo"
+            width="150"
+            height="80"
+            class="d-inline-block align-text-top me-2 mx-5" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item pe-lg-3">
+              <a class="nav-link active" aria-current="page" href="./Homepage.html">Home</a>
+            </li>
+            <li class="nav-item pe-lg-3">
+              <a class="nav-link" href="event_dashboard.html">View</a>
+            </li>
           </ul>
-        </div>
-        <div class="position-absolute end-0 top-0 h-100 d-flex align-items-center pe-5">
-          <a href="#" class="text-decoration-none header-link">Log in / Sign up</a>
         </div>
       </div>
     </nav>
 
-
+    <!-- Main Content -->
     <main class="container my-5">
-      <h3 class="fw-bolder text-center">Parking Lot Events</h3>
+      <h3 class="fw-bolder text-center mb-4">Upcoming Events</h3>
 
       <!-- Filter Form -->
       <form id="filterForm" class="mb-4">
-        <div class="row">
-          <div class="col-md-4 mb-3">
-            <label for="title" class="form-label">Title</label>
-            <select class="form-select" id="title">
-              <option value="">Choose...</option>
-              <option value="surface">Surface Parking Lot</option>
-              <option value="underground">Underground Parking Lot</option>
-              <option value="carport">Carport</option>
-            </select>
+        <div class="mb-3 position-relative">
+          <input
+            type="text"
+            id="search"
+            class="form-control"
+            placeholder="Search events by title, venue, or description..."
+            autocomplete="off" />
+          <ul id="suggestions" class="autocomplete-suggestions"></ul>
+        </div>
+        <div class="row g-2">
+          <div class="col-md-4">
+            <input type="date" id="dateFilter" class="form-control" placeholder="Filter by date" lang="en" />
           </div>
-          <div class="col-md-4 mb-3">
-            <label for="venue" class="form-label">Venue</label>
-            <select class="form-select" id="venue">
-              <option value="">Choose...</option>
-              <option value="P1">P1</option>
-              <option value="P2">P2</option>
-              <option value="P3">P3</option>
-            </select>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="date" class="form-label">Date</label>
-            <input type="date" class="form-control" id="date" />
+          <div class="col-md-8 d-flex">
+            <button type="button" id="searchButton" class="btn btn-primary me-2">Search</button>
+            <button type="button" id="resetButton" class="btn btn-secondary">Reset</button>
           </div>
         </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="evCharging" />
-          <label class="form-check-label" for="evCharging">EV Charging Available</label>
-        </div>
-        <button type="button" class="btn btn-primary">Filter</button>
       </form>
 
+      <!-- Results Count -->
+      <div id="resultsCount" class="alert alert-info text-center mb-3 d-none"></div>
+
       <!-- Event List -->
-      <div id="eventList">
-        <!-- Event Card -->
-        <div class="card event" data-title="surface" data-venue="P1" data-date="2024-11-15" data-ev="yes">
-          <div class="card-body">
-            <h5 class="card-title">Surface Parking Lot Event</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Venue: P1</h6>
-            <p class="card-text"><strong>Date:</strong> 2024-11-15</p>
-            <p class="card-text"><strong>Description:</strong> Enjoy a day of fun and activities at our Surface Parking Lot Event.</p>
-            <p class="card-text"><strong>EV Charging Available:</strong> Yes</p>
-            <p class="card-text"><strong>Tickets Available:</strong> 50</p>
-            <a href="make_booking.html" class="btn btn-primary">Buy Tickets</a>
-          </div>
-        </div>
-
-        <!-- Additional Event Example -->
-        <div class="card event" data-title="underground" data-venue="P2" data-date="2024-11-22" data-ev="no">
-          <div class="card-body">
-            <h5 class="card-title">Underground Parking Lot Event</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Venue: P2</h6>
-            <p class="card-text"><strong>Date:</strong> 2024-11-22</p>
-            <p class="card-text"><strong>Description:</strong> Join us for a wonderful experience at the Underground Parking Lot Event.</p>
-            <p class="card-text"><strong>EV Charging Available:</strong> No</p>
-            <p class="card-text"><strong>Tickets Available:</strong> 30</p>
-            <a href="make_booking.html" class="btn btn-primary">Buy Tickets</a>
-          </div>
-        </div>
-
-        <!-- Simulated Filter Result -->
-        <div class="alert alert-info mt-4" role="alert">
-          <strong>Filtered Results:</strong> Showing 2 of 2 events.
-        </div>
-      </div>
+      <div id="eventList" class="row"></div>
     </main>
 
+    <!-- Footer -->
     <footer class="py-3 fixed-bottom text-center bg-light">
       Notification: This is EIE4432 Project of ©WU Bokun 22099459D & ZHANG Xinshen 22099321D
     </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts/event_dashboard.js" defer></script>
   </body>
 </html>
