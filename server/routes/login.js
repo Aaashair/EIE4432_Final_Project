@@ -22,6 +22,11 @@ router.post('/login', async (req, res) => {
       if (!user.enabled) {
         return res.json({ success: false, message: 'Account is disabled. Please contact support.' });
       }
+      req.session.user = {
+        username: user.username,
+        role: user.role,
+      };
+
       // 验证成功
       return res.json({ success: true, role: user.role });
     } else {

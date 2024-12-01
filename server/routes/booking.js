@@ -1,42 +1,86 @@
 // server/routes/booking.js
 
 import express from 'express';
-import { getAllEvents, updateEvent } from '../eventdb.js';
-import { connectToDatabase } from '../dbclient.js';
+import { getEventById, updateEvent } from '../eventdb.js';
+import { addTicket } from '../ticketsdb.js'; // 引入 addTicket 函数
 
 const router = express.Router();
 
-// 预订停车位
+// POST /api/booking
 router.post('/booking', async (req, res) => {
   try {
-    const { seats } = req.body;
+    const { eventId, seats, totalPrice, cardNumber, discountCode, user } = req.body;
 
-    if (!seats || !Array.isArray(seats) || seats.length === 0) {
-      return res.status(400).json({ error: 'No seats provided for booking.' });
+    if (!eventId || !seats || seats.length === 0 || !cardNumber) {
+      return res.status(400).json({ error: 'Invalid payment data' });
     }
 
-    const db = await connectToDatabase();
-    const eventsCollection = db.collection('events');
+    const event = await getEventById(eventId);
 
-    // 检查所有选择的停车位是否可用
-    const availableSeats = await eventsCollection
-      .find({
-        _id: { $in: seats },
-        status: 'available',
-      })
-      .toArray();
-
-    if (availableSeats.length !== seats.length) {
-      return res.status(400).json({ error: 'One or more selected seats are no longer available.' });
+    if (!event) {
+      return res.status(404).json({ error: 'Event not found' });
     }
 
-    // 更新选择的停车位状态为占用
-    const updateResult = await eventsCollection.updateMany({ _id: { $in: seats } }, { $set: { status: 'occupied' } });
+    // 服务器端验证折扣码和重新计算总价
+    let finalTotalPrice = 0;
+    let discountApplied = false;
 
-    res.json({ message: 'Booking successful.' });
+    seats.forEach((seatId) => {
+      const seat = event.seat[seatId];
+      if (!seat || seat.occupied || !seat.valid) {
+        throw new Error(`Seat ${seatId} is not available.`);
+      }
+      finalTotalPrice += seat.type === 'ev-charging' ? event.evPrice : event.normalPrice;
+    });
+
+    if (discountCode && discountCode === event.discountCode) {
+      finalTotalPrice -= 10;
+      discountApplied = true;
+    }
+
+    if (finalTotalPrice !== totalPrice) {
+      return res.status(400).json({ error: 'Total price mismatch.' });
+    }
+
+    // 更新座位状态到 eventdb
+    const updateData = {};
+    seats.forEach((seatId) => {
+      updateData[`seat.${seatId}.occupied`] = true;
+      updateData[`seat.${seatId}.userID`] = user.username || 'guest'; // 使用用户名或 'guest'
+    });
+
+    const result = await updateEvent(eventId, updateData);
+
+    if (result.matchedCount === 0) {
+      return res.status(500).json({ error: 'Failed to update seat statuses' });
+    }
+
+    // 将票务信息添加到数据库
+    for (const seatId of seats) {
+      const seat = event.seat[seatId];
+      const ticketData = {
+        username: user.username || 'guest',
+        eventId: event._id,
+        title: event.title,
+        date: event.date,
+        description: event.description,
+        venue: event.venue,
+        type: seat.type,
+        price: seat.type === 'ev-charging' ? event.evPrice : event.normalPrice,
+        seatNo: seatId,
+      };
+
+      if (discountApplied) {
+        ticketData.price -= 10 / seats.length; // 将折扣分摊到每张票上
+      }
+
+      await addTicket(ticketData);
+    }
+
+    res.status(200).json({ message: 'Payment processed successfully' });
   } catch (err) {
-    console.error('Error processing booking:', err);
-    res.status(500).json({ error: 'An error occurred while processing the booking.' });
+    console.error('Error processing payment:', err);
+    res.status(500).json({ error: 'An error occurred while processing the payment' });
   }
 });
 

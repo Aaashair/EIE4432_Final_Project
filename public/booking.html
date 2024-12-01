@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <style>
+      .nav-link,
+      .header-link {
+        color: #001334 !important;
+        font-weight: bold !important;
+      }
+
+      footer {
+        background: linear-gradient(135deg, #001334 0%, #001f54 100%) !important;
+        color: white !important;
+      }
+
+      .seat {
+        cursor: pointer;
+        stroke: #333;
+        stroke-width: 1;
+      }
+
+      .seat.invalid {
+        fill: #6c757d; /* Gray for unavailable seats */
+        cursor: not-allowed;
+      }
+
+      .seat.occupied {
+        fill: #dc3545; /* Red for occupied seats */
+        cursor: not-allowed;
+      }
+
+      .seat.ev-charging {
+        fill: #28a745; /* Green for EV-Charging seats */
+      }
+
+      .seat.normal {
+        fill: #007bff; /* Blue for normal seats */
+      }
+
+      .seat.selected {
+        fill: #ffc107; /* Yellow for selected seats */
+      }
+
+      #priceCalculation {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      main {
+        padding-bottom: 60px; /* Adjust based on footer height */
+      }
+
+      .svg-container {
+        overflow: auto;
+        width: 100%;
+        position: relative;
+      }
+
+      /* Legend Styles */
+      .legend {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        margin: 5px 10px;
+      }
+
+      .legend-color {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000;
+        margin-right: 5px;
+      }
+
+      .legend-color.unavailable {
+        background-color: #6c757d; /* Gray */
+      }
+
+      .legend-color.ev-charging {
+        background-color: #28a745; /* Green */
+      }
+
+      .legend-color.normal {
+        background-color: #007bff; /* Blue */
+      }
+
+      .legend-color.occupied {
+        background-color: #dc3545; /* Red */
+      }
+
+      .legend-color.selected {
+        background-color: #ffc107; /* Yellow */
+      }
+
+      .tooltip-inner {
+        max-width: 200px;
+        padding: 0.25rem 0.5rem;
+        color: #fff;
+        text-align: center;
+        background-color: #000;
+        border-radius: 0.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid h-100">
+        <!-- Logo and Toggler -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img
+            src="assets/icon.png"
+            alt="Logo"
+            width="150"
+            height="80"
+            class="d-inline-block align-text-top me-2 mx-5" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item pe-lg-3">
+              <a class="nav-link" href="./Homepage.html">Home</a>
+            </li>
+            <li class="nav-item pe-lg-3">
+              <a class="nav-link" href="event_dashboard.html">Events</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+      <!-- Event Information -->
+      <div id="eventInfo" class="mb-5">
+        <!-- Event details will be populated here -->
+      </div>
+
+      <!-- Seat Map -->
+      <div>
+        <h4 class="mb-4">Select Your Parking Space(s)</h4>
+        <!-- Legend -->
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-color unavailable"></div>
+            Unavailable
+          </div>
+          <div class="legend-item">
+            <div class="legend-color ev-charging"></div>
+            EV-Charging
+          </div>
+          <div class="legend-item">
+            <div class="legend-color normal"></div>
+            Normal
+          </div>
+          <div class="legend-item">
+            <div class="legend-color occupied"></div>
+            Occupied
+          </div>
+          <div class="legend-item">
+            <div class="legend-color selected"></div>
+            Selected
+          </div>
+        </div>
+        <!-- SVG Map -->
+        <div id="svgMapContainer" class="mb-4">
+          <div class="svg-container">
+            <svg id="seatMap" width="600" height="400"></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Price Calculation -->
+      <div id="priceCalculation" class="mb-4 text-center">Total Price: $<span id="totalPrice">0</span></div>
+
+      <!-- Booking Button -->
+      <div class="text-center">
+        <button id="confirmBookingButton" class="btn btn-primary">Confirm Booking</button>
+      </div>
+
+      <!-- Success/Error Message -->
+      <div id="message" class="mt-4"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-3 fixed-bottom text-center bg-light">
+      Notification: This is EIE4432 Project of ©WU Bokun 22099459D & ZHANG Xinshen 22099321D
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts/booking.js" defer></script>
+  </body>
+</html>

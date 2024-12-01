@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
           if (result.role === 'user') {
             window.location.href = 'event_dashboard.html';
           } else if (result.role === 'admin') {
-            window.location.href = 'EventManagePage.html';
+            window.location.href = 'event_management.html';
           } else {
             alert('Unknown role.');
           }

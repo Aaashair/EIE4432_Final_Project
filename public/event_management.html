@@ -1,0 +1,216 @@
+<!-- public/event_management.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Management</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <style>
+      .nav-link,
+      .header-link {
+        color: #001334 !important;
+        font-weight: bold !important;
+      }
+
+      footer {
+        background: linear-gradient(135deg, #001334 0%, #001f54 100%) !important;
+        color: white !important;
+      }
+
+      .card {
+        margin-bottom: 30px;
+      }
+
+      .card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      main {
+        padding-bottom: 60px; /* 根据页脚高度调整 */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+          <div class="navbar-brand">
+            <img src="assets/icon.png" alt="Logo" style="max-height: 100px; width: 300px" />
+          </div>
+          <div class="navbar-nav ms-3" style="font-weight: bold; font-size: 1.25rem">
+            <a class="nav-link px-4 text-center" href="event_management.html">Parkinglot Management</a>
+            <a class="nav-link px-4 text-center" href="BookingRecords.html">All Booking Records</a>
+            <a class="nav-link link-primary fw-bold px-4 text-center" href="UserInformation.html"
+              >All User Information</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+      <h3 class="fw-bolder text-center mb-4">Event Management</h3>
+
+      <!-- Create Event Form -->
+      <div class="card mb-5">
+        <div class="card-header">Create New Event</div>
+        <div class="card-body">
+          <form id="createEventForm" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="createEventId" class="form-label">Event ID</label>
+              <input type="text" class="form-control" id="createEventId" name="_id" required />
+            </div>
+            <div class="mb-3">
+              <label for="createTitle" class="form-label">Title</label>
+              <input type="text" class="form-control" id="createTitle" name="title" required />
+            </div>
+            <div class="mb-3">
+              <label for="createDate" class="form-label">Date</label>
+              <input type="date" class="form-control" id="createDate" name="date" required />
+            </div>
+            <div class="mb-3">
+              <label for="createVenue" class="form-label">Venue</label>
+              <input type="text" class="form-control" id="createVenue" name="venue" required />
+            </div>
+            <div class="mb-3">
+              <label for="createDescription" class="form-label">Description</label>
+              <textarea class="form-control" id="createDescription" name="description" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="createCoverImage" class="form-label">Cover Image</label>
+              <input
+                type="file"
+                class="form-control"
+                id="createCoverImage"
+                name="coverImage"
+                accept="image/*"
+                required />
+            </div>
+            <div class="mb-3">
+              <label for="createTickets" class="form-label">Tickets Available</label>
+              <input type="number" class="form-control" id="createTickets" name="tickets" min="0" required />
+            </div>
+            <div class="mb-3">
+              <label for="createNormalPrice" class="form-label">Normal Price</label>
+              <input
+                type="number"
+                class="form-control"
+                id="createNormalPrice"
+                name="normalPrice"
+                min="0"
+                step="0.01"
+                required />
+            </div>
+            <div class="mb-3">
+              <label for="createEvPrice" class="form-label">EV-Charging Price</label>
+              <input
+                type="number"
+                class="form-control"
+                id="createEvPrice"
+                name="evPrice"
+                min="0"
+                step="0.01"
+                required />
+            </div>
+            <div class="mb-3">
+              <label for="createDiscountCode" class="form-label">Discount Code</label>
+              <input type="text" class="form-control" id="createDiscountCode" name="discountCode" required />
+            </div>
+            <button type="submit" class="btn btn-success">Create Event</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Existing Events List with Edit Option -->
+      <h4 class="mb-3">Existing Events</h4>
+      <div id="existingEventsList" class="row"></div>
+    </main>
+
+    <!-- Edit Event Modal -->
+    <div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editEventModalLabel">Edit Event</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="editEventForm" enctype="multipart/form-data">
+              <input type="hidden" id="editEventId" name="_id" />
+              <div class="mb-3">
+                <label for="editTitle" class="form-label">Title</label>
+                <input type="text" class="form-control" id="editTitle" name="title" required />
+              </div>
+              <div class="mb-3">
+                <label for="editDate" class="form-label">Date</label>
+                <input type="date" class="form-control" id="editDate" name="date" required />
+              </div>
+              <div class="mb-3">
+                <label for="editVenue" class="form-label">Venue</label>
+                <input type="text" class="form-control" id="editVenue" name="venue" required />
+              </div>
+              <div class="mb-3">
+                <label for="editDescription" class="form-label">Description</label>
+                <textarea class="form-control" id="editDescription" name="description" rows="3" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="editCoverImage" class="form-label">Cover Image (Leave blank to keep current)</label>
+                <input type="file" class="form-control" id="editCoverImage" name="coverImage" accept="image/*" />
+              </div>
+              <div class="mb-3">
+                <label for="editTickets" class="form-label">Tickets Available</label>
+                <input type="number" class="form-control" id="editTickets" name="tickets" min="0" required />
+              </div>
+              <div class="mb-3">
+                <label for="editNormalPrice" class="form-label">Normal Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="editNormalPrice"
+                  name="normalPrice"
+                  min="0"
+                  step="0.01"
+                  required />
+              </div>
+              <div class="mb-3">
+                <label for="editEvPrice" class="form-label">EV-Charging Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="editEvPrice"
+                  name="evPrice"
+                  min="0"
+                  step="0.01"
+                  required />
+              </div>
+              <div class="mb-3">
+                <label for="editDiscountCode" class="form-label">Discount Code</label>
+                <input type="text" class="form-control" id="editDiscountCode" name="discountCode" required />
+              </div>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-3 fixed-bottom text-center bg-light">
+      Notification: This is EIE4432 Project of ©WU Bokun 22099459D & ZHANG Xinshen 22099321D
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts/event_management.js" defer></script>
+  </body>
+</html>

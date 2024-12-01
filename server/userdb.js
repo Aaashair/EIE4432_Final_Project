@@ -143,4 +143,47 @@ async function getAllUsers() {
   }
 }
 
-export { update_user, username_exist, validate_user, getAllUsers };
+async function getUserByUsername(username) {
+  try {
+    const collection = await getUsersCollection();
+    const user = await collection.findOne({ username });
+    return user;
+  } catch (err) {
+    console.error('Unable to fetch user from database!');
+    console.error(err);
+    throw err;
+  }
+}
+
+// 更新用户资料
+async function updateUserProfile(username, updatedData) {
+  try {
+    const collection = await getUsersCollection();
+
+    const updateFields = {
+      nickname: updatedData.nickname,
+      email: updatedData.email,
+      birthday: updatedData.birthday,
+      gender: updatedData.gender,
+      // 如果存在密码，稍后处理
+    };
+
+    // 如果用户提供了新的密码，进行哈希处理
+    if (updatedData.password) {
+      const hashedPassword = await bcrypt.hash(updatedData.password, 10);
+      updateFields.password = hashedPassword;
+    }
+
+    // 移除未定义的字段
+    Object.keys(updateFields).forEach((key) => updateFields[key] === undefined && delete updateFields[key]);
+
+    const result = await collection.updateOne({ username }, { $set: updateFields });
+    return result.modifiedCount > 0;
+  } catch (err) {
+    console.error('Unable to update user profile in database!');
+    console.error(err);
+    throw err;
+  }
+}
+
+export { update_user, username_exist, validate_user, getAllUsers, getUserByUsername, updateUserProfile };

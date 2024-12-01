@@ -107,6 +107,8 @@ function displayEvents(events) {
             <p class="card-text"><strong>Venue:</strong> ${event.venue}</p>
             <p class="card-text">${event.description}</p>
             <p class="card-text mt-auto"><strong>Tickets Available:</strong> ${event.tickets}</p>
+            <!-- Book 按钮 -->
+            <a href="booking.html?eventId=${event._id}" class="btn btn-primary">Book</a>
           </div>
         </div>
       </div>
