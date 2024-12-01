@@ -1,45 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>22099321D 22099459D_event_dashboard</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <script src="scripts/jquery-3.7.1.min.js"></script>
-    <script src="event_dashboard.js" defer></script>
+    <title>Event Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
     <style>
-      .switch {
-        width: auto;
-      }
-      @media (max-width: 991.98px) {
-        .switch {
-          width: 100%;
-        }
-      }
       .nav-link,
       .header-link {
         color: #001334 !important;
         font-weight: bold !important;
       }
+
       footer {
-        background: linear-gradient(
-          135deg,
-          #001334 0%,
-          #001f54 100%
-        ) !important;
+        background: linear-gradient(135deg, #001334 0%, #001f54 100%) !important;
         color: white !important;
       }
+
       .card {
         margin-bottom: 30px;
       }
+
       .card img {
         width: 100%;
         height: 250px;
         object-fit: cover;
       }
+
       .autocomplete-suggestions {
         border: 1px solid #ccc;
         max-height: 150px;
@@ -47,115 +36,106 @@
         z-index: 1000;
         position: absolute;
         background: white;
-        width: calc(100% - 20px);
+        width: 100%;
         margin: 0;
         padding: 0;
         list-style: none;
       }
+
       .autocomplete-suggestion {
         padding: 10px;
         cursor: pointer;
       }
+
       .autocomplete-suggestion:hover {
         background: #f0f0f0;
       }
+
       main {
-        padding-bottom: 60px; /* 根据 footer 的高度调整 */
+        padding-bottom: 60px; /* 根据页脚高度调整 */
       }
     </style>
   </head>
   <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid" style="height: 4rem">
-        <div class="row h-100 switch">
-          <div class="col-4 d-lg-none d-flex align-items-center">
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </div>
-          <div class="col-4 col-lg d-flex justify-content-center h-100">
-            <img
-              class="h-100 w-auto mx-auto px-lg-5"
-              src="assets/icon.png"
-              style="transform: scale(1.2)"
-            />
-          </div>
-          <div
-            class="col-4 d-lg-none d-flex align-items-center justify-content-end"
-          >
-            <a href="#" class="text-decoration-none header-link"
-              >Log in / Sign up</a
-            >
-          </div>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mb-2 mb-lg-0">
+      <div class="container-fluid h-100">
+        <!-- Logo and Toggler -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img
+            src="assets/icon.png"
+            alt="Logo"
+            width="150"
+            height="80"
+            class="d-inline-block align-text-top me-2 mx-5" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item pe-lg-3">
-              <a class="nav-link active" aria-current="page" href="./Homepage.html"
-                >Home</a
-              >
+              <a class="nav-link active" aria-current="page" href="./Homepage.html">Home</a>
             </li>
             <li class="nav-item pe-lg-3">
               <a class="nav-link" href="event_dashboard.html">View</a>
             </li>
           </ul>
         </div>
-        <div
-          class="position-absolute end-0 top-0 h-100 d-flex align-items-center pe-5"
-        >
-          <a href="#" class="text-decoration-none header-link"
-            >Log in / Sign up</a
-          >
-        </div>
       </div>
     </nav>
 
+    <!-- Main Content -->
     <main class="container my-5">
-      <h3 class="fw-bolder text-center">Upcoming Events</h3>
+      <h3 class="fw-bolder text-center mb-4">Upcoming Events</h3>
 
       <!-- Filter Form -->
-      <form id="filterForm" class="mb-4 position-relative">
-        <input
-          type="text"
-          id="search"
-          class="form-control d-inline-block"
-          style="width: calc(100% - 120px)"
-          placeholder="Search events by title, venue, or description..."
-          autocomplete="off"
-        />
-
-        <ul id="suggestions" class="autocomplete-suggestions"></ul>
-        <input
-          type="date"
-          id="dateFilter"
-          class="form-control mt-2"
-          placeholder="Filter by date"
-          lang="en"
-        />
-
-        <button type="button" id="searchButton" class="btn btn-primary ms-2">
-          Search
-        </button>
+      <form id="filterForm" class="mb-4">
+        <div class="mb-3 position-relative">
+          <input
+            type="text"
+            id="search"
+            class="form-control"
+            placeholder="Search events by title, venue, or description..."
+            autocomplete="off" />
+          <ul id="suggestions" class="autocomplete-suggestions"></ul>
+        </div>
+        <div class="row g-2">
+          <div class="col-md-4">
+            <input type="date" id="dateFilter" class="form-control" placeholder="Filter by date" lang="en" />
+          </div>
+          <div class="col-md-8 d-flex">
+            <button type="button" id="searchButton" class="btn btn-primary me-2">Search</button>
+            <button type="button" id="resetButton" class="btn btn-secondary">Reset</button>
+          </div>
+        </div>
       </form>
 
-      <div
-        id="resultsCount"
-        class="alert alert-info text-center mb-3"
-        style="display: none"
-      ></div>
+      <!-- Results Count -->
+      <div id="resultsCount" class="alert alert-info text-center mb-3 d-none"></div>
 
       <!-- Event List -->
-      <div id="eventList"></div>
+      <div id="eventList" class="row"></div>
     </main>
 
+    <!-- Footer -->
     <footer class="py-3 fixed-bottom text-center bg-light">
-      Notification: This is EIE4432 Project of ©WU Bokun 22099459D & ZHANG
-      Xinshen 22099321D
+      Notification: This is EIE4432 Project of ©WU Bokun 22099459D & ZHANG Xinshen 22099321D
     </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts/event_dashboard.js" defer></script>
   </body>
 </html>
