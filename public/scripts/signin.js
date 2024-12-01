@@ -36,9 +36,10 @@ document.addEventListener('DOMContentLoaded', function () {
       .then((response) => response.json())
       .then((result) => {
         if (result.success) {
+          localStorage.setItem('username', username);
           // Redirect based on role
           if (result.role === 'user') {
-            window.location.href = 'HomePage.html';
+            window.location.href = 'event_dashboard.html';
           } else if (result.role === 'admin') {
             window.location.href = 'EventManagePage.html';
           } else {

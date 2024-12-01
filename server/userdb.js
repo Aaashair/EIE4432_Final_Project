@@ -129,4 +129,18 @@ async function validate_user(username, password) {
   }
 }
 
-export { update_user, username_exist, validate_user };
+async function getAllUsers() {
+  try {
+    const collection = await getUsersCollection();
+    console.log('Connected to usersinfo collection');
+    const users = await collection.find().toArray();
+    console.log(`Fetched ${users.length} users from database`);
+    return users;
+  } catch (err) {
+    console.error('Unable to fetch users from database!');
+    console.error(err);
+    throw err; // 将错误抛出，以便在路由处理程序中处理
+  }
+}
+
+export { update_user, username_exist, validate_user, getAllUsers };

@@ -24,12 +24,14 @@ import loginRoute from './routes/login.js';
 import signupRoute from './routes/signup.js';
 import eventsRoute from './routes/events.js';
 import bookingRoute from './routes/booking.js'; // 导入预订路由
+import usersRoute from './routes/users.js';
 
 // 使用路由
 app.use('/auth', loginRoute);
 app.use('/auth', signupRoute);
 app.use('/api', eventsRoute);
 app.use('/api', bookingRoute); // 使用预订路由
+app.use('/auth', usersRoute);
 
 import { initializeEventsCollection } from './eventdb.js';
 
