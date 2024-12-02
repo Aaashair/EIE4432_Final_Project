@@ -1,0 +1,17 @@
+{
+  // Formatting and linting
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.tabCompletion": "on",
+  "editor.tabSize": 2,
+  "files.autoSave": "onFocusChange",
+  "prettier.endOfLine": "auto",
+  "prettier.configPath": ".prettierrc",
+  "prettier.requireConfig": true,
+  "prettier.useEditorConfig": false,
+  "liveServer.settings.port": 5501,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

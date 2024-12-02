@@ -1,0 +1,48 @@
+[
+  {
+    "username": "alice",
+    "password": "ecila",
+    "nickname": "alice",
+    "email": "alice@example.com",
+    "birthday": "1990-05-15",
+    "gender": "Female",
+    "role": "user",
+    "enabled": true
+  },
+  {
+    "username": "bob",
+    "password": "bob1234",
+    "nickname": "bob",
+    "email": "bob@example.com",
+    "birthday": "1992-08-20",
+    "gender": "Male",
+    "role": "user",
+    "enabled": true
+  },
+  {
+    "username": "janice",
+    "password": "ecinaj",
+    "nickname": "janice",
+    "email": "janice@example.com",
+    "birthday": "1988-12-30",
+    "gender": "Female",
+    "role": "user",
+    "enabled": true
+  },
+  {
+    "username": "admin",
+    "password": "adminpass",
+    "role": "admin",
+    "enabled": true
+  },
+  {
+    "username": "qqq",
+    "password": "123456",
+    "nickname": "monica",
+    "email": "22033321d@gmail.com",
+    "birthday": "2024-11-03",
+    "gender": "Male",
+    "role": "user",
+    "enabled": true
+  }
+]

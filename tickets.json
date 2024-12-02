@@ -1,0 +1,44 @@
+[
+  {
+    "username": "alice",
+    "title": "Surface Parking Lot Event",
+    "date": "2024-11-15",
+    "description": "The parking lot is located at the East Entrance of Disneyland.",
+    "venue": "P1",
+    "type": "normal",
+    "price": 100,
+    "seatNo": "A1"
+  },
+  {
+    "username": "bob",
+    "title": "Underground Parking Lot Event",
+    "date": "2024-11-15",
+    "description": "The parking lot is located at the East Entrance of Disneyland.",
+    "venue": "P2",
+    "type": "ev-charging",
+    "price": 50,
+    "seatNo": "B9"
+  },
+  {
+    "id": null,
+    "username": "guest",
+    "title": "Underground Parking Lot Event",
+    "date": "2024-11-22",
+    "description": "The parking lot is located at the West Entrance of Disneyland.",
+    "venue": "P2",
+    "type": "normal",
+    "price": 50,
+    "seatNo": "A1"
+  },
+  {
+    "id": 1,
+    "username": "guest",
+    "title": "Underground Parking Lot Event",
+    "date": "2024-11-22",
+    "description": "The parking lot is located at the West Entrance of Disneyland.",
+    "venue": "P2",
+    "type": "normal",
+    "price": 50,
+    "seatNo": "A3"
+  }
+]

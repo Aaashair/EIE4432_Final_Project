@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>22099321D 22099459D_myprofile</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+    <style>
+      .ticket-card {
+        width: 66.666%;
+        margin: 20px auto;
+        border: 3px solid #000;
+        border-radius: 10px;
+        padding: 15px 20px;
+      }
+      .ticket-title {
+        color: navy;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+      .ticket-info {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .info-row {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid h-100">
+        <!-- Logo and Toggler -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img
+            src="assets/icon.png"
+            alt="Logo"
+            width="150"
+            height="80"
+            class="d-inline-block align-text-top me-2 mx-5" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item pe-lg-3">
+              <a class="nav-link active" aria-current="page" href="./Homepage.html">Home</a>
+            </li>
+            <li class="nav-item pe-lg-3">
+              <a class="nav-link" href="event_dashboard.html">View Events</a>
+            </li>
+            <li class="nav-item pe-lg-3">
+              <a class="nav-link" href="my_profile.html">My Profile</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <main>
+        <div class="container my-5">
+          <!-- User Information Card Template -->
+          <div class="card mb-4 mx-auto" style="width: 66.66%; border: 2px solid #02132f">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <h4 class="border-bottom pb-2 mb-3" style="color: #164596; font-weight: bold">My Profile</h4>
+                </div>
+                <form id="profileForm">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <!-- Account ID (read-only) -->
+                      <div class="mb-3">
+                        <label for="accountId" class="form-label"><strong>Account ID:</strong></label>
+                        <input type="text" class="form-control" id="accountId" readonly />
+                      </div>
+                      <!-- Nickname -->
+                      <div class="mb-3">
+                        <label for="nickname" class="form-label"><strong>Nickname:</strong></label>
+                        <input type="text" class="form-control" id="nickname" />
+                      </div>
+                      <!-- Email -->
+                      <div class="mb-3">
+                        <label for="email" class="form-label"><strong>Email:</strong></label>
+                        <input type="email" class="form-control" id="email" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <!-- Birthday -->
+                      <div class="mb-3">
+                        <label for="birthday" class="form-label"><strong>Birthday:</strong></label>
+                        <input type="date" class="form-control" id="birthday" />
+                      </div>
+                      <!-- Gender -->
+                      <div class="mb-3">
+                        <label for="gender" class="form-label"><strong>Gender:</strong></label>
+                        <select class="form-select" id="gender">
+                          <option value="">Select Gender</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                      <!-- Password -->
+                      <div class="mb-3">
+                        <label for="password" class="form-label"><strong>New Password:</strong></label>
+                        <input type="password" class="form-control" id="password" />
+                      </div>
+                      <!-- Confirm Password -->
+                      <div class="mb-3">
+                        <label for="confirmPassword" class="form-label"><strong>Confirm New Password:</strong></label>
+                        <input type="password" class="form-control" id="confirmPassword" />
+                      </div>
+                    </div>
+                    <!-- Save Changes Button -->
+                    <div class="col-12 text-end">
+                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 添加用户票务信息的容器 -->
+        <div class="container my-5">
+          <div id="ticketsContainer"></div>
+        </div>
+      </main>
+    </main>
+
+    <footer
+      class="py-3 fixed-bottom text-center"
+      style="background: linear-gradient(135deg, #001334 0%, #001f54 100%) !important; color: white !important">
+      Notification: This is EIE4432 Project of ©WU Bokun 22099459D & ZHANG Xinshen 22099321D
+    </footer>
+    <script src="scripts/myprofile.js"></script>
+  </body>
+</html>
