@@ -1,246 +1,102 @@
 [
-    {
-        "_id": "event001",
-        "title": "Surface Parking Lot Event",
-        "date": "2024-11-15",
-        "description": "The parking lot is located at the East Entrance of Disneyland.",
-        "venue": "P1",
-        "tickets": 50,
-        "coverImage": "assets/surface_parking_lot.jpg",
-        "normalPrice":50,
-        "evPrice":100,
-        "discountCode":"22099459D",
-        "seat": {
-            "A1": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A2": {
-                "valid": true,
-                "occupied": false,
-                "type": "ev-charging",
-                "userID": "none"
-            },
-            "A3": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A4": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A5": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A6": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A7": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A8": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A9": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B1": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B2": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B3": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B4": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B5": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B6": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B7": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B8": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B9": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            }
-        }
-    },
-    {
-        "_id": "event002",
-        "title": "Underground Parking Lot Event",
-        "date": "2024-11-22",
-        "description": "The parking lot is located at the West Entrance of Disneyland.",
-        "venue": "P2",
-        "tickets": 30,
-        "coverImage": "assets/underground_parking_lot.jpg",
-        "normalPrice":50,
-        "evPrice":100,
-        "discountCode":"22099321D",
-        "seat": {
-            "A1": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A2": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A3": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A4": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A5": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A6": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A7": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A8": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "A9": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B1": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B2": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B3": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B4": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B5": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B6": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B7": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B8": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            },
-            "B9": {
-                "valid": true,
-                "occupied": false,
-                "type": "normal",
-                "userID": "none"
-            }
-        }
+  {
+    "_id": "event001",
+    "title": "Surface Parking Lot Event",
+    "date": "2024-11-15",
+    "description": "The parking lot is located at the East Entrance of Disneyland.",
+    "venue": "P1",
+    "tickets": 50,
+    "coverImage": "assets/surface_parking_lot.jpg",
+    "normalPrice": 50,
+    "evPrice": 100,
+    "discountCode": "22099459D",
+    "seat": {
+      "A1": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "A2": { "valid": true, "occupied": false, "type": "ev-charging", "userID": "none" },
+      "A3": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "A4": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "A5": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "A6": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "A7": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "A8": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "A9": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B1": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B2": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B3": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B4": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B5": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B6": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B7": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B8": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B9": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C1": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C2": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C3": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C4": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C5": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C6": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C7": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C8": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C9": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D1": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D2": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D3": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D4": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D5": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D6": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D7": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D8": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D9": { "valid": true, "occupied": false, "type": "normal", "userID": "none" }
     }
+  },
+  {
+    "_id": "event002",
+    "title": "Underground Parking Lot Event",
+    "date": "2024-11-22",
+    "description": "The parking lot is located at the West Entrance of Disneyland.",
+    "venue": "P2",
+    "tickets": 30,
+    "coverImage": "assets/underground_parking_lot.jpg",
+    "normalPrice": 50,
+    "evPrice": 100,
+    "discountCode": "22099321D",
+    "seat": {
+      "A1": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "A2": { "valid": true, "occupied": false, "type": "ev-charging", "userID": "none" },
+      "A3": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "A4": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "A5": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "A6": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "A7": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "A8": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "A9": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B1": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B2": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B3": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B4": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B5": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B6": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B7": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B8": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "B9": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C1": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C2": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C3": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C4": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C5": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C6": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C7": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C8": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "C9": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D1": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D2": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D3": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D4": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D5": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D6": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D7": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D8": { "valid": true, "occupied": false, "type": "normal", "userID": "none" },
+      "D9": { "valid": true, "occupied": false, "type": "normal", "userID": "none" }
+    }
+  }
 ]
